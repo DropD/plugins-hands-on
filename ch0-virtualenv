@@ -1,0 +1,84 @@
+#!/bin/bash
+
+BLD="$(tput bold)"
+RED="$(tput setaf 1)$BLD"
+GRN="$(tput setaf 2)$BLD"
+BLU="$(tput setaf 4)$BLD"
+NOC="$(tput sgr0)"
+done="${RED}Done${NOC}"
+
+echo "========="
+echo "CHAPTER 1"
+echo "========="
+echo "${RED}python executable is: ${BLU}$(which python)${NOC}"
+echo "${RED}pip executable is: ${BLU}$(which pip)${NOC}"
+echo "${RED}first python lib is: ${BLU}$(python -c 'import sys;print filter(None, sys.path)[0]')${NOC}"
+
+# ----------- install virtualenv ----------------
+echo "$ ${GRN}pip install virtualenv${NOC}"
+read -s
+pip install virtualenv
+echo $done
+
+# ----------- create venvs ----------------------
+read
+echo "$ ${GRN}virtualenv A${NOC}"
+read -s
+virtualenv myenvA
+echo $done
+
+read
+echo "$ ${GRN}virtualenv B${NOC}"
+read -s
+virtualenv myenvB
+echo $done
+
+# ------------ ipython clash in A -----------------
+read
+echo "$ ${GRN}source A/bin/activate${NOC}"
+read -s
+source A/bin/activate
+echo $done
+
+read 
+echo "(A) $ ${GRN}pip install ipython${NOC}"
+read -s
+pip install ipython
+echo $done
+
+read
+echo "(A) $ ${GRN}ipython --version${NOC}"
+read -s
+ipython --version
+echo $done
+
+read
+echo "(A) $ ${GRN}pip install six==0.9${NOC}"
+read -s
+pip install six==0.9
+echo $done
+
+read
+echo "(A) $ ${GRN}ipython --version${NOC}"
+read -s
+ipython --version
+echo $done
+
+read
+echo "(A) $ ${GRN}pip install ipythone${NOC}"
+read -s
+pip install ipython
+echo $done
+
+# ----------- install old six in B ------------
+read
+echo "(A) $ ${GRN}source B/bin/activate${NOC}"
+read -s
+source B/bin/activate
+echo $done
+
+read
+echo "(B) $ ${GRN}pip install six==0.9${NOC}"
+pip install six==0.9
+read -s
+echo $done

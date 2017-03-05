@@ -1,0 +1,23 @@
+#!/bin/bash
+actions=0
+if test -d ./aiidaenv; then
+    echo "rm -r ./aiidaenv"
+    rm -r ./aiidaenv
+    actions=$((( $actions + 1 )))
+fi
+if test -d ./aiida_core; then
+    echo "rm -r ./aiida_core"
+    rm -r ./aiida_core
+    actions=$((( $actions + 1 )))
+fi
+if test -d ./aiida-mul; then
+    echo "rm -r ./aiida-mul"
+    rm -r ./aiida-mul
+    actions=$((( $actions + 1 )))
+fi
+if test -d ./aiida-verdi; then
+    echo "rm -r ./aiida-verdi"
+    rm -r ./aiida-verdi
+if [[ $actions==0 ]]; then
+    echo "nothing to clean up."
+fi
