@@ -24,13 +24,13 @@ echo $done
 read
 echo "$ ${GRN}virtualenv A${NOC}"
 read -s
-virtualenv myenvA
+virtualenv A
 echo $done
 
 read
 echo "$ ${GRN}virtualenv B${NOC}"
 read -s
-virtualenv myenvB
+virtualenv B
 echo $done
 
 # ------------ ipython clash in A -----------------
