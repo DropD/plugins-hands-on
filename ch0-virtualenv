@@ -53,9 +53,9 @@ ipython --version
 echo $done
 
 read
-echo "(A) $ ${GRN}pip install six==0.9${NOC}"
+echo "(A) $ ${GRN}pip install setuptools==30.0 six==0.9${NOC}"
 read -s
-pip install six==0.9
+pip install setuptools==30.0 six==0.9
 echo $done
 
 read
@@ -65,7 +65,7 @@ ipython --version
 echo $done
 
 read
-echo "(A) $ ${GRN}pip install ipythone${NOC}"
+echo "(A) $ ${GRN}pip install ipython${NOC}"
 read -s
 pip install ipython
 echo $done
