@@ -1,0 +1,33 @@
+#!/bin/bash
+source pres.sh
+
+header "CHAPTER 1 - Sample Plugin"
+# ------- create & activate venv --------
+cmd "conda create -n aiidaenv python=2.7 psycopg2=2.6.1 setuptools>=33" "."
+
+cmd "source activate aiidaenv" "."
+
+# --------- install feature-plugins -------------
+cmd "git clone https://github.com/aiidateam/aiida_core" "(aiidaenv) ."
+
+cmd_no "cd aiida_core" "(aiidaenv) ."
+
+cmd "git checkout feature-plugins" "(aiidaenv) ./aiida_core"
+
+cmd "pip install -e .[verdi_shell,ssh,REST] --process-dependency-links" "(aiidaenv) ./aiida_core"
+
+cmd_no "cd .." "(aiidaenv) ./aiida_core"
+
+# ---------- list calculation plugins ---------
+
+cmd "verdi calculation plugins" "(aiidaenv) ."
+
+# ---------- install aiida-mul ---------------
+
+cmd "git clone https://github.com/DropD/aiida-mul" "(aiidaenv) ."
+
+cmd "pip install -e aiida-mul" "(aiidaenv) ."
+
+# ------ demonstrate verdi recognizes mul -----
+cmd "verdi calculation plugins" "(aiidaenv) ."
+cmd "source deactivate"

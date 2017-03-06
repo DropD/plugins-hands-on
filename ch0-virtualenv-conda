@@ -1,0 +1,35 @@
+#!/bin/bash
+source pres.sh
+
+header "CHAPTER 0 - Virtualenv"
+
+# ----------- install virtualenv ----------------
+#cmd "pip install virtualenv"
+#conda is preinstalled
+
+# ----------- create venvs ----------------------
+cmd "conda create -n A python=2.7"
+
+cmd "conda create -n B python=2.7"
+
+cmd "conda info --envs"
+
+# ------------ ipython clash in A -----------------
+cmd "source activate A"
+
+cmd "pip install ipython" "(A)"
+
+cmd "ipython --version" "(A)"
+
+cmd "pip install six==0.9" "(A)"
+
+cmd "ipython --version" "(A)"
+
+cmd "pip install ipython" "(A)"
+
+# ----------- install old six in B ------------
+cmd "source activate B" "(A)"
+
+cmd "pip install six==0.9" "(B)"
+
+cmd "source deactivate"

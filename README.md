@@ -4,6 +4,8 @@
 
 use `source` to run each chapter. Otherwise you may overwrite packages in your default environment.
 
+if you use conda (anaconda or miniconda) for your python version / environment management, you can use the *-conda chapter versions.
+
 ## Chapters:
 
 ### ch0-virtualenv
@@ -20,3 +22,9 @@ Demonstrate a python package version clash and how to use separate environments 
 Play around with the sample plugin (in aiida-mul/), adding / renaming entry points in setup.json.
 Then use `verdi calculation plugins` to see the results, or use the factory methods in `verdi shell`
 Hint: As always after changing setup.py or setup.json, a reinstall is required.
+
+### ch2-registry
+
+* Reuse the environment created in ch1
+* install experimental verdi-plug commands (github.com/DropD/aiida-verdi)
+* demonstrate verdi-plug plugin commands reading plugin info from the registry
