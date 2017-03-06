@@ -1,0 +1,15 @@
+#!/bin/bash
+source pres.sh
+
+header "CHAPTER 2 - Registry"
+
+# make sure the environment from ch1 is active
+cmd "source aiidaenv/bin/activate"
+
+# install aiida-verdi (experimental commands)
+cmd "git clone github.com/DropD/aiida-verdi" "(aiidaenv)"
+cmd "pip install -e aiida-verdi" "(aiidaenv)"
+
+# use the plugin commands
+cmd "verdi-plug plugin search" "(aiidaenv)"
+cmd "verdi-plug plugin info aiida-mul" "(aiidaenv)"

@@ -1,84 +1,34 @@
 #!/bin/bash
+source pres.sh
 
-BLD="$(tput bold)"
-RED="$(tput setaf 1)$BLD"
-GRN="$(tput setaf 2)$BLD"
-BLU="$(tput setaf 4)$BLD"
-NOC="$(tput sgr0)"
-done="${RED}Done${NOC}"
-
-echo "========="
-echo "CHAPTER 1"
-echo "========="
-echo "${RED}python executable is: ${BLU}$(which python)${NOC}"
-echo "${RED}pip executable is: ${BLU}$(which pip)${NOC}"
-echo "${RED}first python lib is: ${BLU}$(python -c 'import sys;print filter(None, sys.path)[0]')${NOC}"
+header "CHAPTER 0 - Virtualenv"
 
 # ----------- install virtualenv ----------------
-echo "$ ${GRN}pip install virtualenv${NOC}"
-read -s
-pip install virtualenv
-echo $done
+cmd "pip install virtualenv"
 
 # ----------- create venvs ----------------------
-read
-echo "$ ${GRN}virtualenv A${NOC}"
-read -s
-virtualenv A
-echo $done
+cmd "virtualenv A"
 
-read
-echo "$ ${GRN}virtualenv B${NOC}"
-read -s
-virtualenv B
-echo $done
+cmd "virtualenv B"
+
+cmd "ls"
+
+cmd "ls A"
 
 # ------------ ipython clash in A -----------------
-read
-echo "$ ${GRN}source A/bin/activate${NOC}"
-read -s
-source A/bin/activate
-echo $done
+cmd "source A/bin/activate"
 
-read 
-echo "(A) $ ${GRN}pip install ipython${NOC}"
-read -s
-pip install ipython
-echo $done
+cmd "pip install ipython"
 
-read
-echo "(A) $ ${GRN}ipython --version${NOC}"
-read -s
-ipython --version
-echo $done
+cmd "ipython --version" "(A)"
 
-read
-echo "(A) $ ${GRN}pip install setuptools==30.0 six==0.9${NOC}"
-read -s
-pip install setuptools==30.0 six==0.9
-echo $done
+cmd "pip install setuptools==30.0 six==0.9" "(A)"
 
-read
-echo "(A) $ ${GRN}ipython --version${NOC}"
-read -s
-ipython --version
-echo $done
+cmd "ipython --version" "(A)"
 
-read
-echo "(A) $ ${GRN}pip install ipython${NOC}"
-read -s
-pip install ipython
-echo $done
+cmd "pip install ipython" "(A)"
 
 # ----------- install old six in B ------------
-read
-echo "(A) $ ${GRN}source B/bin/activate${NOC}"
-read -s
-source B/bin/activate
-echo $done
+cmd "source B/bin/activate" "(A)"
 
-read
-echo "(B) $ ${GRN}pip install six==0.9${NOC}"
-pip install six==0.9
-read -s
-echo $done
+cmd "pip install setuptools==30.0 six==0.9" "(B)"

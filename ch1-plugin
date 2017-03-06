@@ -1,93 +1,30 @@
 #!/bin/bash
+source pres.sh
 
-BLD="$(tput bold)"
-RED="$(tput setaf 1)$BLD"
-GRN="$(tput setaf 2)$BLD"
-BLU="$(tput setaf 4)$BLD"
-NOC="$(tput sgr0)"
-
-echo "========="
-echo "CHAPTER 1"
-echo "========="
-echo "${RED}python executable is: ${BLU}$(which python)${NOC}"
-echo "${RED}pip executable is: ${BLU}$(which pip)${NOC}"
-echo "${RED}first python lib is: ${BLU}$(python -c 'import sys;print filter(None, sys.path)[0]')${NOC}"
-
+header "CHAPTER 1 - Sample Plugin"
 # ------- create & activate venv --------
-read
-echo ". $ ${GRN}virtualenv ./aiidaenv${NOC}"
-read -s
-virtualenv ./aiidaenv
-#echo -e "output\n...\n..."
-echo "${RED}DONE${NOC}"
-
-read
-echo ". $ ${GRN}source ./aiidaenv/bin/activate${NOC}"
-read -s
-source ./aiidaenv/bin/activate
-#echo -e "output\n...\n..."
-echo "${RED}DONE${NOC}"
+cmd "source ./aiidaenv/bin/activate" "."
 
 # --------- install feature-plugins -------------
-read
-echo "(aiidaenv) . $ ${GRN}git clone https://github.com/aiidateam/aiida_core${NOC}"
-read -s
-git clone https://github.com/aiidateam/aiida_core
-#echo -e "output\n...\n..."
-echo "${RED}DONE${NOC}"
+cmd "git clone https://github.com/aiidateam/aiida_core" "(aiidaenv) ."
 
-read
-echo "(aiidaenv) . $ ${GRN}cd aiida_core${NOC}"
-cd aiida_core
+cmd_no "cd aiida_core" "(aiidaenv) ."
 
-read 
-echo "(aiidaenv) ./aiida_core $ ${GRN}git checkout feature-plugins${NOC}"
-git checkout feature-plugins
-read -s
-#echo -e "output\n...\n..."
-echo "${RED}DONE${NOC}"
+cmd "git checkout feature-plugins" "(aiidaenv) ./aiida_core"
 
-read
-echo "(aiidaenv) ./aiida_core $ ${GRN}pip install -e .[verdi_shell,ssh,REST]${NOC} --process-dependency-links"
-pip install -e .[verdi_shell,ssh,REST] --process-dependency-links
-read -s
-#echo -e "output\n...\n..."
-echo "${RED}DONE${NOC}"
+cmd "pip install -e .[verdi_shell,ssh,REST] --process-dependency-links" "(aiidaenv) ./aiida_core"
 
-read
-echo "(aiidaenv) . $ ${GRN}cd ..${NOC}"
-cd ..
+cmd_no "cd .." "(aiidaenv) ./aiida_core"
 
 # ---------- list calculation plugins ---------
 
-read
-echo "(aiidaenv) . $ ${GRN}verdi calculation plugins${NOC}"
-read -s
-verdi calculation plugins
-#echo -e "output\n...\n..."
-echo "${RED}DONE${NOC}"
+cmd "verdi calculation plugins" "(aiidaenv) ."
 
 # ---------- install aiida-mul ---------------
 
-read
-echo "(aiidaenv) . $ ${GRN}git clone https://github.com/DropD/aiida-mul${NOC}"
-read -s
-git clone https://github.com/DropD/aiida-mul
-#echo -e "output\n...\n..."
-echo "${RED}DONE${NOC}"
+cmd "git clone https://github.com/DropD/aiida-mul" "(aiidaenv) ."
 
-read
-echo "(aiidaenv) . $ ${GRN}pip install -e aiida-mul${NOC}"
-read -s
-pip install -e aiida-mul
-#echo -e "output\n...\n..."
-echo "${RED}DONE${NOC}"
+cmd "pip install -e aiida-mul" "(aiidaenv) ."
 
 # ------ demonstrate verdi recognizes mul -----
-read
-echo "(aiidaenv) . $ ${GRN}verdi calculation plugins${NOC}"
-read -s
-verdi calculation plugins
-#echo -e "output\n  ...\n  mul\n  ..."
-echo "${RED}DONE${NOC}"
-
+cmd "verdi calculation plugins" "(aiidaenv) ."
