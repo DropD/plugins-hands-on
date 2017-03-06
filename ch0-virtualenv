@@ -18,7 +18,7 @@ cmd "ls A"
 # ------------ ipython clash in A -----------------
 cmd "source A/bin/activate"
 
-cmd "pip install ipython"
+cmd "pip install ipython" "(A)"
 
 cmd "ipython --version" "(A)"
 
@@ -32,3 +32,5 @@ cmd "pip install ipython" "(A)"
 cmd "source B/bin/activate" "(A)"
 
 cmd "pip install setuptools==30.0 six==0.9" "(B)"
+
+cmd "deactivate"

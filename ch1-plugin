@@ -3,6 +3,7 @@ source pres.sh
 
 header "CHAPTER 1 - Sample Plugin"
 # ------- create & activate venv --------
+cmd "virtualenv aiidaenv" "."
 cmd "source ./aiidaenv/bin/activate" "."
 
 # --------- install feature-plugins -------------
