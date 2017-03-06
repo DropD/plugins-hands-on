@@ -29,3 +29,4 @@ cmd "pip install -e aiida-mul" "(aiidaenv) ."
 
 # ------ demonstrate verdi recognizes mul -----
 cmd "verdi calculation plugins" "(aiidaenv) ."
+cmd "deactivate"

@@ -7,9 +7,11 @@ header "CHAPTER 2 - Registry"
 cmd "source aiidaenv/bin/activate"
 
 # install aiida-verdi (experimental commands)
-cmd "git clone github.com/DropD/aiida-verdi" "(aiidaenv)"
+cmd "git clone https://github.com/DropD/aiida-verdi" "(aiidaenv)"
 cmd "pip install -e aiida-verdi" "(aiidaenv)"
 
 # use the plugin commands
-cmd "verdi-plug plugin search" "(aiidaenv)"
-cmd "verdi-plug plugin info aiida-mul" "(aiidaenv)"
+cmd "verdi-plug plugin search 2>dev/null" "(aiidaenv)"
+cmd "verdi-plug plugin info mul" "(aiidaenv)"
+
+cmd "deactivate"
