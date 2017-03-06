@@ -39,5 +39,5 @@ function header {
     echo "============================="
     echo "${RED}python executable is: ${BLU}$(which python)${NOC}"
     echo "${RED}pip executable is: ${BLU}$(which pip)${NOC}"
-    echo "${RED}first python lib is: ${BLU}$(python -c 'import sys;print filter(None, sys.path)[0]')${NOC}"
+    echo "${RED}first python lib is: ${BLU}$(python -c 'import sys;print(list(filter(None, sys.path))[0])')${NOC}"
 }
