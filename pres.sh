@@ -4,6 +4,8 @@ GRN="$(tput setaf 2)$BLD"
 BLU="$(tput setaf 4)$BLD"
 NOC="$(tput sgr0)"
 
+[[ $PRES_RUN ]] || PRES_RUN=1
+
 function confirm {
     echo "${RED}DONE${NOC}"
 }
